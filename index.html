@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SF Real Estate - Pakistan Edition</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">SF Real Estate</a>
+                <div class="menu-toggle" id="mobile-menu">
+                    <span>&#9776;</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listings.html">Properties</a></li>
+                    <li><a href="services.html">Construction</a></li>
+                    <li><a href="#locations">Locations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SF Real Estate</h1>
+            <p>Your Trusted Partner for Buying, Selling & Renting</p>
+
+            <div
+                style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; margin-top: 30px; display:inline-block; max-width:90%;">
+                <form action="listings.html" method="GET"
+                    style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                    <select name="city" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                        <option value="">Select City</option>
+                        <option value="Karachi">Karachi</option>
+                        <option value="Lahore">Lahore</option>
+                        <option value="Islamabad">Islamabad</option>
+                        <option value="Rawalpindi">Rawalpindi</option>
+                    </select>
+                    <select name="type" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                        <option value="">Property Type</option>
+                        <option value="House">House</option>
+                        <option value="Plot">Plot</option>
+                    </select>
+                    <select name="mode" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                        <option value="">Buy / Rent</option>
+                        <option value="Sale">Buy</option>
+                        <option value="Rent">Rent</option>
+                    </select>
+                    <button type="submit" class="btn"
+                        style="opacity: 1; transform: none; animation: none;">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2>Our Philosophy</h2>
+            <p>We build with the land, not on it. Our projects in Karachi, Lahore, Rawalpindi, and Islamabad resemble a
+                tranquil refuge immersed in nature. Experience the luxury of hospitality where the beauty of the
+                outdoors meets the comfort of home.</p>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section id="locations" class="section locations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Locations</h2>
+                <p>Select a destination to discover your sanctuary.</p>
+            </div>
+            <div class="grid">
+                <!-- Karachi -->
+                <div class="location-card" onclick="window.location.href='locations/karachi.html'">
+                    <img src="https://images.unsplash.com/photo-1596796901977-22d7335165d3?q=80&w=2070&auto=format&fit=crop"
+                        alt="Karachi Beach">
+                    <div class="card-overlay">
+                        <h3>Karachi</h3>
+                        <p>Coastal serenity meets urban luxury.</p>
+                        <span class="card-link">View Project &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Lahore -->
+                <div class="location-card" onclick="window.location.href='locations/lahore.html'">
+                    <img src="https://images.unsplash.com/photo-1622546758362-accb424c538a?q=80&w=2072&auto=format&fit=crop"
+                        alt="Lahore Fort Gardens">
+                    <div class="card-overlay">
+                        <h3>Lahore</h3>
+                        <p>Heritage and nature in perfect harmony.</p>
+                        <span class="card-link">View Project &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Rawalpindi -->
+                <div class="location-card" onclick="window.location.href='locations/rawalpindi.html'">
+                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1776&auto=format&fit=crop"
+                        alt="Rawalpindi Mountains">
+                    <div class="card-overlay">
+                        <h3>Rawalpindi</h3>
+                        <p>Gateway to the north, grounded in earth.</p>
+                        <span class="card-link">View Project &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Islamabad -->
+                <div class="location-card" onclick="window.location.href='locations/islamabad.html'">
+                    <img src="https://images.unsplash.com/photo-1627896229983-584a2599059e?q=80&w=2071&auto=format&fit=crop"
+                        alt="Islamabad Margalla">
+                    <div class="card-overlay">
+                        <h3>Islamabad</h3>
+                        <p>Nestled in the Margallas, a retreat for the soul.</p>
+                        <span class="card-link">View Project &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-logo">SF Real Estate</div>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Email Us</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 SF Real Estate Pakistan. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

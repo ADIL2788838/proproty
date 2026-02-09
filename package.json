@@ -1,0 +1,8 @@
+{
+  "name": "sf-real-estate",
+  "version": "1.0.0",
+  "description": "SF Real Estate Static Site",
+  "scripts": {
+    "start": "npx -y serve ."
+  }
+}

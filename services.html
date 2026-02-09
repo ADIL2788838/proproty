@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction Services - SF Real Estate</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .services-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            margin-top: 60px;
+            /* offset fixed header */
+        }
+
+        .services-header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .container-services {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            display: flex;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+        }
+
+        .service-img {
+            width: 300px;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .service-company {
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                flex-direction: column;
+            }
+
+            .service-img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header" style="background-color: var(--primary-color);">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo" style="color:white;">SF Real Estate</a>
+                <div class="menu-toggle" id="mobile-menu" style="color:white;">
+                    <span>&#9776;</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" style="color:white;">Home</a></li>
+                    <li><a href="listings.html" style="color:white;">Properties</a></li>
+                    <li><a href="services.html" style="color:white; font-weight:bold;">Construction</a></li>
+                    <li><a href="index.html#contact" style="color:white;">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="services-header">
+        <h1>Build Your Dream</h1>
+        <p>Expert Construction Services from Vetted Companies</p>
+    </div>
+
+    <div class="container-services" id="services-list">
+        <!-- JS Populated -->
+    </div>
+
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadServices();
+        });
+
+        function loadServices() {
+            const container = document.getElementById('services-list');
+            const services = db.getServices();
+            const users = db.getAll().users;
+
+            if (services.length === 0) {
+                container.innerHTML = '<p style="text-align:center;">No services listed at the moment.</p>';
+                return;
+            }
+
+            services.forEach(svc => {
+                // Find Company Name
+                const company = users.find(u => u.id === svc.companyId) || { name: 'Unknown Company' };
+
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" class="service-img" alt="Construction">
+                    <div class="service-content">
+                        <div class="service-title">${svc.title}</div>
+                        <div class="service-company">By: ${company.name}</div>
+                        <p>${svc.description}</p>
+                        <div class="service-price">Est. ${svc.priceRange}</div>
+                        <button class="btn" style="opacity:1; transform:none;" onclick="inquireService('${company.name}')">Inquire Now</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function inquireService(companyName) {
+            alert(`Thank you! Your inquiry for ${companyName} has been sent. They will contact you shortly.`);
+        }
+    </script>
+</body>
+
+</html>

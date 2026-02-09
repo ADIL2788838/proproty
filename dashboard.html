@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SF Real Estate</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 20px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dashboard-welcome h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .dashboard-welcome p {
+            color: #666;
+        }
+
+        .dashboard-section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .dashboard-section.active {
+            display: block;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-approved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Forms in Dashboard */
+        .dash-form {
+            max-width: 800px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-full {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header" style="background-color: var(--primary-color);">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo" style="color:white;">SF Real Estate</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" style="color:white;">Home</a></li>
+                    <li><a href="#" onclick="auth.logout()" style="color:white;">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="dashboard-welcome">
+                <h2 id="userName">Welcome, User</h2>
+                <p id="userRole">Role: User</p>
+            </div>
+            <button onclick="auth.logout()" class="btn"
+                style="opacity:1; transform:none; background-color:#dc3545;">Logout</button>
+        </div>
+
+        <!-- ADMIN DASHBOARD -->
+        <div id="admin-dashboard" class="dashboard-section">
+            <h3>Pending Approvals</h3>
+            <table id="admin-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Seller</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-tbody">
+                    <!-- JS will populate -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SELLER DASHBOARD -->
+        <div id="seller-dashboard" class="dashboard-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3>My Properties</h3>
+                <button class="btn" style="opacity:1; transform:none;" onclick="showAddPropertyForm()">+ Add
+                    Property</button>
+            </div>
+
+            <!-- List of Properties -->
+            <div id="seller-list-view">
+                <table id="seller-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="seller-tbody">
+                        <!-- JS Populate -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add Property Form (Hidden by default) -->
+            <div id="add-property-form"
+                style="display:none; margin-top:30px; border-top:1px solid #eee; padding-top:20px;">
+                <h4>Add New Property</h4>
+                <form id="propertyForm" class="dash-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="propTitle" required placeholder="e.g. 5 Marla House">
+                        </div>
+                        <div class="form-group">
+                            <label>Type</label>
+                            <select id="propType">
+                                <option value="House">House</option>
+                                <option value="Plot">Plot</option>
+                                <option value="Commercial">Commercial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mode</label>
+                            <select id="propMode">
+                                <option value="Sale">For Sale</option>
+                                <option value="Rent">For Rent</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price (PKR)</label>
+                            <input type="number" id="propPrice" required>
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <select id="propCity">
+                                <option value="Karachi">Karachi</option>
+                                <option value="Lahore">Lahore</option>
+                                <option value="Islamabad">Islamabad</option>
+                                <option value="Rawalpindi">Rawalpindi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Area / Location</label>
+                            <input type="text" id="propArea" required placeholder="e.g. DHA Phase 6">
+                        </div>
+                        <div class="form-group form-full">
+                            <label>Image URL</label>
+                            <input type="url" id="propImage" placeholder="https://..." required>
+                        </div>
+                        <div class="form-group form-full">
+                            <label>Description</label>
+                            <textarea id="propDesc" rows="4" style="width:100%; padding:10px; border:1px solid #ddd;"
+                                required></textarea>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px; display:flex; gap:10px;">
+                        <button type="submit" class="btn" style="opacity:1; transform:none;">Submit for
+                            Approval</button>
+                        <button type="button" class="btn" style="opacity:1; transform:none; background-color:#ccc;"
+                            onclick="hideAddPropertyForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- BUYER DASHBOARD -->
+        <div id="buyer-dashboard" class="dashboard-section">
+            <h3>My Favorites / Inquiries</h3>
+            <p>You have no saved properties yet. <a href="index.html#locations"
+                    style="color:var(--primary-color); font-weight:bold;">Browse Properties</a></p>
+        </div>
+
+        <!-- CONSTRUCTION DASHBOARD -->
+        <div id="construction-dashboard" class="dashboard-section">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3>My Services</h3>
+                <button class="btn" style="opacity:1; transform:none;">+ Add Service</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service Title</th>
+                        <th>Price Range</th>
+                        <th>Inquiries</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Grey Structure Construction</td>
+                        <td>3500/sqft</td>
+                        <td>2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

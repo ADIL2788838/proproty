@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - SF Real Estate</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .detail-container {
+            max-width: 1000px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .prop-header {
+            margin-bottom: 20px;
+        }
+
+        .prop-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .prop-meta {
+            color: #666;
+            font-size: 1.1rem;
+            display: flex;
+            gap: 15px;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .prop-desc h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .prop-desc p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eee;
+            position: sticky;
+            top: 100px;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .agent-info {
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .agent-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .contact-box {
+            background: #fdfdfd;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+            /* Hidden until clicked */
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header id="header" style="background-color: var(--primary-color);">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo" style="color:white;">SF Real Estate</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" style="color:white;">Home</a></li>
+                    <li><a href="listings.html" style="color:white;">Properties</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="detail-container">
+        <a href="listings.html" class="back-link">&larr; Back to Listings</a>
+
+        <div id="prop-content">
+            <!-- Filled by JS -->
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            if (!id) {
+                window.location.href = 'listings.html';
+                return;
+            }
+
+            const prop = db.getProperties().find(p => p.id == id);
+            if (!prop) {
+                document.getElementById('prop-content').innerHTML = '<h2>Property not found</h2>';
+                return;
+            }
+
+            // Find Seller Info
+            const users = db.getAll().users;
+            const seller = users.find(u => u.id == prop.sellerId) || { name: 'Verified Seller', phone: '0000-0000000', email: 'hidden' };
+
+            // Render
+            document.getElementById('prop-content').innerHTML = `
+                <div class="prop-header">
+                    <h1>${prop.title}</h1>
+                    <div class="prop-meta">
+                        <span>📍 ${prop.area}, ${prop.city}</span>
+                        <span>•</span>
+                        <span>${prop.type} (${prop.mode})</span>
+                    </div>
+                </div>
+
+                <img src="${prop.image}" alt="${prop.title}" class="main-img">
+
+                <div class="content-grid">
+                    <div class="prop-desc">
+                        <h3>Description</h3>
+                        <p>${prop.description}</p>
+                        
+                        <h3>Features</h3>
+                        <ul>
+                            <li>City: ${prop.city}</li>
+                            <li>Area: ${prop.area}</li>
+                            <li>Type: ${prop.type}</li>
+                        </ul>
+                    </div>
+
+                    <aside>
+                        <div class="sidebar-card">
+                            <div class="price-tag">PKR ${prop.price.toLocaleString()}</div>
+                            
+                            <div class="agent-info">
+                                <p style="font-size:0.9rem; color:#666;">Listed by</p>
+                                <div class="agent-name">${seller.name}</div>
+                                <button class="btn" style="width:100%; opacity:1; transform:none;" onclick="revealContact()">Contact Seller</button>
+                                
+                                <div id="contactBox" class="contact-box">
+                                    <p>Phone: <strong>${seller.phone || 'N/A'}</strong></p>
+                                    <p>Email: ${seller.email}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+             `;
+        });
+
+        function revealContact() {
+            // Optional: Require login to see contact
+            const user = auth.getUser();
+            if (!user) {
+                alert('Please Login to view seller contact details.');
+                window.location.href = 'auth.html';
+                return;
+            }
+            document.getElementById('contactBox').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
