@@ -4,130 +4,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SF Real Estate - Pakistan Edition</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    <title>Zainab Builders - Pakistan's #1 Real Estate Portal</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
     <!-- Header -->
-    <header id="header">
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">SF Real Estate</a>
-                <div class="menu-toggle" id="mobile-menu">
-                    <span>&#9776;</span>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <span>Download App</span>
+                <span>Advertise</span>
+                <span>Blog</span>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">ZB</span> Zainab <span>Builders</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="listings.html">Properties</a>
+                    <a href="listings.html?type=Plot">Plot Finder</a>
+                    <a href="services.html">Construction</a>
+                    <a href="#projects">New Projects</a>
+                </nav>
+                <div class="nav-actions">
+                    <span id="auth-link">
+                        <!-- JS renders Login/Dashboard here -->
+                        <a href="auth.html" class="btn-login"><i class="fas fa-user-circle"></i> Login</a>
+                    </span>
+                    <a href="dashboard.html" class="btn-add-prop">+ Add Property</a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="listings.html">Properties</a></li>
-                    <li><a href="services.html">Construction</a></li>
-                    <li><a href="#locations">Locations</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Search -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>SF Real Estate</h1>
-            <p>Your Trusted Partner for Buying, Selling & Renting</p>
+        <div class="search-widget">
+            <h1 class="hero-title">Search properties for sale and to rent in Pakistan</h1>
 
-            <div
-                style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; margin-top: 30px; display:inline-block; max-width:90%;">
-                <form action="listings.html" method="GET"
-                    style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                    <select name="city" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
-                        <option value="">Select City</option>
-                        <option value="Karachi">Karachi</option>
-                        <option value="Lahore">Lahore</option>
-                        <option value="Islamabad">Islamabad</option>
-                        <option value="Rawalpindi">Rawalpindi</option>
-                    </select>
-                    <select name="type" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
-                        <option value="">Property Type</option>
-                        <option value="House">House</option>
-                        <option value="Plot">Plot</option>
-                    </select>
-                    <select name="mode" style="padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
-                        <option value="">Buy / Rent</option>
-                        <option value="Sale">Buy</option>
-                        <option value="Rent">Rent</option>
-                    </select>
-                    <button type="submit" class="btn"
-                        style="opacity: 1; transform: none; animation: none;">Search</button>
-                </form>
+            <div class="search-tabs">
+                <button class="tab-btn active" onclick="setMode('Sale')">BUY</button>
+                <button class="tab-btn" onclick="setMode('Rent')">RENT</button>
+                <button class="tab-btn" ononclick="window.location.href='#projects'">PROJECTS</button>
             </div>
+
+            <form action="listings.html" method="GET" class="search-form">
+                <select name="city" class="search-select">
+                    <option value="">Select City</option>
+                    <option value="Karachi">Karachi</option>
+                    <option value="Lahore">Lahore</option>
+                    <option value="Islamabad">Islamabad</option>
+                    <option value="Rawalpindi">Rawalpindi</option>
+                </select>
+                <input type="text" name="location" class="search-input" placeholder="Enter location (e.g. DHA Phase 6)">
+                <input type="hidden" name="mode" id="modeInput" value="Sale">
+                <button type="submit" class="btn-search">FIND</button>
+            </form>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section about">
-        <div class="container">
-            <h2>Our Philosophy</h2>
-            <p>We build with the land, not on it. Our projects in Karachi, Lahore, Rawalpindi, and Islamabad resemble a
-                tranquil refuge immersed in nature. Experience the luxury of hospitality where the beauty of the
-                outdoors meets the comfort of home.</p>
-        </div>
-    </section>
-
-    <!-- Locations Section -->
-    <section id="locations" class="section locations">
+    <!-- Browse By City -->
+    <section class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Our Locations</h2>
-                <p>Select a destination to discover your sanctuary.</p>
+                <h2>Browse Properties</h2>
+                <p>Explore real estate in popular cities</p>
             </div>
-            <div class="grid">
-                <!-- Karachi -->
-                <div class="location-card" onclick="window.location.href='locations/karachi.html'">
-                    <img src="https://images.unsplash.com/photo-1596796901977-22d7335165d3?q=80&w=2070&auto=format&fit=crop"
-                        alt="Karachi Beach">
-                    <div class="card-overlay">
-                        <h3>Karachi</h3>
-                        <p>Coastal serenity meets urban luxury.</p>
-                        <span class="card-link">View Project &rarr;</span>
+
+            <div class="browse-grid">
+                <div class="browse-card" onclick="window.location.href='listings.html?city=Lahore'">
+                    <i class="fas fa-mosque browse-icon"></i>
+                    <div class="browse-title">Lahore</div>
+                    <div style="font-size:0.8rem; color:#888;">12,000+ Properties</div>
+                </div>
+                <div class="browse-card" onclick="window.location.href='listings.html?city=Karachi'">
+                    <i class="fas fa-water browse-icon"></i>
+                    <div class="browse-title">Karachi</div>
+                    <div style="font-size:0.8rem; color:#888;">8,500+ Properties</div>
+                </div>
+                <div class="browse-card" onclick="window.location.href='listings.html?city=Islamabad'">
+                    <i class="fas fa-mountain browse-icon"></i>
+                    <div class="browse-title">Islamabad</div>
+                    <div style="font-size:0.8rem; color:#888;">6,400+ Properties</div>
+                </div>
+                <div class="browse-card" onclick="window.location.href='listings.html?city=Rawalpindi'">
+                    <i class="fas fa-road browse-icon"></i>
+                    <div class="browse-title">Rawalpindi</div>
+                    <div style="font-size:0.8rem; color:#888;">4,200+ Properties</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Projects (Mocked Grid) -->
+    <section id="projects" class="section" style="background-color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>New Projects & Developments</h2>
+                <p>Exclusive projects by Zainab Builders</p>
+            </div>
+
+            <div class="prop-card-grid">
+                <!-- Project 1 -->
+                <div class="prop-card">
+                    <div class="prop-img-box">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop"
+                            class="prop-img" alt="Luxury Apartments">
+                        <span class="prop-badge">ON INSTALLMENTS</span>
+                    </div>
+                    <div class="prop-details">
+                        <div class="prop-price">Zainab Heights</div>
+                        <div class="prop-loc">Bahria Town, Lahore</div>
+                        <p style="font-size:0.9rem; margin-top:10px;">Luxury apartments starting from PKR 85 Lakh.
+                            Booking open.</p>
                     </div>
                 </div>
 
-                <!-- Lahore -->
-                <div class="location-card" onclick="window.location.href='locations/lahore.html'">
-                    <img src="https://images.unsplash.com/photo-1622546758362-accb424c538a?q=80&w=2072&auto=format&fit=crop"
-                        alt="Lahore Fort Gardens">
-                    <div class="card-overlay">
-                        <h3>Lahore</h3>
-                        <p>Heritage and nature in perfect harmony.</p>
-                        <span class="card-link">View Project &rarr;</span>
+                <!-- Project 2 -->
+                <div class="prop-card">
+                    <div class="prop-img-box">
+                        <img src="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=2009&auto=format&fit=crop"
+                            class="prop-img" alt="Commercial Hub">
+                        <span class="prop-badge">COMMERCIAL</span>
+                    </div>
+                    <div class="prop-details">
+                        <div class="prop-price">ZB Trade Centre</div>
+                        <div class="prop-loc">Blue Area, Islamabad</div>
+                        <p style="font-size:0.9rem; margin-top:10px;">Corporate offices and shops. High ROI potential.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Rawalpindi -->
-                <div class="location-card" onclick="window.location.href='locations/rawalpindi.html'">
-                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1776&auto=format&fit=crop"
-                        alt="Rawalpindi Mountains">
-                    <div class="card-overlay">
-                        <h3>Rawalpindi</h3>
-                        <p>Gateway to the north, grounded in earth.</p>
-                        <span class="card-link">View Project &rarr;</span>
+                <!-- Project 3 -->
+                <div class="prop-card">
+                    <div class="prop-img-box">
+                        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop"
+                            class="prop-img" alt="Villa Community">
+                        <span class="prop-badge">GATED COMMUNITY</span>
                     </div>
-                </div>
-
-                <!-- Islamabad -->
-                <div class="location-card" onclick="window.location.href='locations/islamabad.html'">
-                    <img src="https://images.unsplash.com/photo-1627896229983-584a2599059e?q=80&w=2071&auto=format&fit=crop"
-                        alt="Islamabad Margalla">
-                    <div class="card-overlay">
-                        <h3>Islamabad</h3>
-                        <p>Nestled in the Margallas, a retreat for the soul.</p>
-                        <span class="card-link">View Project &rarr;</span>
+                    <div class="prop-details">
+                        <div class="prop-price">Zainab Villas</div>
+                        <div class="prop-loc">DHA City, Karachi</div>
+                        <p style="font-size:0.9rem; margin-top:10px;">5 & 10 Marla smart villas. Possession in 2 years.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -135,21 +163,62 @@
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
-            <div class="footer-logo">SF Real Estate</div>
-            <div class="footer-links">
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Email Us</a>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>About Us</h4>
+                    <p>Zainab Builders & Real Estate Consultants is Pakistan's leading real estate portal, connecting
+                        buyers, sellers, and landlords.</p>
+                    <br>
+                    <h4>Contact</h4>
+                    <p>03349467334</p>
+                    <p>Sohailahmedzproperty@gmail.com</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Browse Properties</h4>
+                    <ul>
+                        <li><a href="listings.html?city=Lahore">Houses in Lahore</a></li>
+                        <li><a href="listings.html?city=Karachi">Houses in Karachi</a></li>
+                        <li><a href="listings.html?city=Islamabad">Houses in Islamabad</a></li>
+                        <li><a href="listings.html?city=Rawalpindi">Houses in Rawalpindi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="dashboard.html">Add Property</a></li>
+                        <li><a href="services.html">Construction Services</a></li>
+                        <li><a href="#projects">New Projects</a></li>
+                        <li><a href="auth.html">Register</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="copyright">
-                &copy; 2026 SF Real Estate Pakistan. All Rights Reserved.
+            <div class="footer-bottom">
+                &copy; 2026 Zainab Builders. All Rights Reserved.
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="data.js"></script>
+    <script>
+        // Simple tabs toggle
+        function setMode(mode) {
+            document.getElementById('modeInput').value = mode;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // In a real app we'd target specific button, here just simple toggle
+            event.target.classList.add('active');
+        }
+
+        // Auth State Check
+        const userStr = localStorage.getItem('sf_user_session');
+        if (userStr) {
+            const user = JSON.parse(userStr);
+            document.getElementById('auth-link').innerHTML = `
+                <a href="dashboard.html" style="font-weight:600;"><i class="fas fa-user-check"></i> ${user.name}</a>
+            `;
+        }
+    </script>
 </body>
 
 </html>

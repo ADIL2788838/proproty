@@ -7,9 +7,10 @@ const DB_KEY = 'sf_real_estate_db';
 
 const initialData = {
     users: [
-        { id: 1, name: 'Admin User', email: 'admin@sf.com', password: '123', role: 'admin' },
-        { id: 2, name: 'Ali Seller', email: 'seller@sf.com', password: '123', role: 'seller', phone: '0300-1234567' },
-        { id: 3, name: 'Zara Buyer', email: 'buyer@sf.com', password: '123', role: 'buyer', phone: '0321-7654321' },
+        { id: 1, name: 'Sohail Ahmed (Admin)', email: 'admin@zainabbuilders.com', password: '123', role: 'admin' },
+        { id: 2, name: 'Zainab Builders', email: 'Sohailahmedzproperty@gmail.com', password: '123', role: 'seller', phone: '0334-9467334' },
+        { id: 3, name: 'Zara Buyer', email: 'buyer@test.com', password: '123', role: 'buyer', phone: '0321-7654321' },
+
         { id: 4, name: 'BuildIt Construction', email: 'construction@sf.com', password: '123', role: 'construction', phone: '042-111222333', serviceType: 'General Construction' }
     ],
     properties: [

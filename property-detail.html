@@ -4,112 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Details - SF Real Estate</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+    <title>Property Details - Zainab Builders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .detail-container {
-            max-width: 1000px;
-            margin: 100px auto 50px;
-            padding: 0 20px;
+        .prop-detail-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 15px;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #666;
-            text-decoration: none;
-        }
-
-        .prop-header {
+        .pd-header {
             margin-bottom: 20px;
         }
 
-        .prop-header h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .prop-meta {
-            color: #666;
-            font-size: 1.1rem;
-            display: flex;
-            gap: 15px;
-        }
-
-        .main-img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-        }
-
-        .prop-desc h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .prop-desc p {
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        .sidebar-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eee;
-            position: sticky;
-            top: 100px;
-        }
-
-        .price-tag {
+        .pd-title {
             font-size: 2rem;
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .agent-info {
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-            margin-top: 20px;
-        }
-
-        .agent-name {
-            font-weight: 600;
+            color: var(--secondary-color);
             margin-bottom: 5px;
         }
 
-        .contact-box {
-            background: #fdfdfd;
-            border: 1px solid #ddd;
-            padding: 15px;
+        .pd-loc {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .pd-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Left Column */
+        .pd-main-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
             border-radius: 4px;
-            margin-top: 15px;
-            text-align: center;
-            display: none;
-            /* Hidden until clicked */
+            border: 1px solid #ddd;
+        }
+
+        .pd-section {
+            background: white;
+            padding: 30px;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        .pd-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .feature-item {
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-item i {
+            color: var(--primary-color);
+            width: 20px;
+        }
+
+        /* Right Column */
+        .pd-sidebar-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .pd-price {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .agent-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .agent-img {
+            width: 60px;
+            height: 60px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #888;
+        }
+
+        .agent-info div {
+            font-weight: 700;
+            color: #333;
+        }
+
+        .agent-info span {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: inherit;
+        }
+
+        .btn-inquire {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-inquire:hover {
+            background: #008c44;
         }
 
         @media (max-width: 768px) {
-            .content-grid {
+            .pd-grid {
                 grid-template-columns: 1fr;
             }
 
-            .main-img {
+            .pd-main-img {
                 height: 300px;
             }
         }
@@ -118,25 +165,27 @@
 
 <body>
 
-    <header id="header" style="background-color: var(--primary-color);">
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo" style="color:white;">SF Real Estate</a>
-                <ul class="nav-links">
-                    <li><a href="index.html" style="color:white;">Home</a></li>
-                    <li><a href="listings.html" style="color:white;">Properties</a></li>
-                </ul>
-            </nav>
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <a href="index.html" class="logo"><span class="logo-icon">ZB</span> Zainab <span>Builders</span></a>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="listings.html">Properties</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <div class="detail-container">
-        <a href="listings.html" class="back-link">&larr; Back to Listings</a>
-
-        <div id="prop-content">
-            <!-- Filled by JS -->
-        </div>
+    <div class="prop-detail-container" id="propContent">
+        <!-- JS Populated -->
     </div>
+
+    <footer>
+        <div class="container" style="text-align:center;">
+            &copy; 2026 Zainab Builders.
+        </div>
+    </footer>
 
     <script src="data.js"></script>
     <script src="auth.js"></script>
@@ -145,76 +194,75 @@
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
 
-            if (!id) {
-                window.location.href = 'listings.html';
-                return;
-            }
-
             const prop = db.getProperties().find(p => p.id == id);
             if (!prop) {
-                document.getElementById('prop-content').innerHTML = '<h2>Property not found</h2>';
+                document.getElementById('propContent').innerHTML = '<h2>Property not found</h2>';
                 return;
             }
 
-            // Find Seller Info
             const users = db.getAll().users;
             const seller = users.find(u => u.id == prop.sellerId) || { name: 'Verified Seller', phone: '0000-0000000', email: 'hidden' };
 
-            // Render
-            document.getElementById('prop-content').innerHTML = `
-                <div class="prop-header">
-                    <h1>${prop.title}</h1>
-                    <div class="prop-meta">
-                        <span>📍 ${prop.area}, ${prop.city}</span>
-                        <span>•</span>
-                        <span>${prop.type} (${prop.mode})</span>
-                    </div>
+            document.getElementById('propContent').innerHTML = `
+                <div class="pd-header">
+                    <h1 class="pd-title">${prop.title}</h1>
+                    <div class="pd-loc"><i class="fas fa-map-marker-alt"></i> ${prop.area}, ${prop.city}</div>
                 </div>
 
-                <img src="${prop.image}" alt="${prop.title}" class="main-img">
-
-                <div class="content-grid">
-                    <div class="prop-desc">
-                        <h3>Description</h3>
-                        <p>${prop.description}</p>
+                <div class="pd-grid">
+                    <div>
+                        <img src="${prop.image}" class="pd-main-img">
                         
-                        <h3>Features</h3>
-                        <ul>
-                            <li>City: ${prop.city}</li>
-                            <li>Area: ${prop.area}</li>
-                            <li>Type: ${prop.type}</li>
-                        </ul>
-                    </div>
-
-                    <aside>
-                        <div class="sidebar-card">
-                            <div class="price-tag">PKR ${prop.price.toLocaleString()}</div>
-                            
-                            <div class="agent-info">
-                                <p style="font-size:0.9rem; color:#666;">Listed by</p>
-                                <div class="agent-name">${seller.name}</div>
-                                <button class="btn" style="width:100%; opacity:1; transform:none;" onclick="revealContact()">Contact Seller</button>
-                                
-                                <div id="contactBox" class="contact-box">
-                                    <p>Phone: <strong>${seller.phone || 'N/A'}</strong></p>
-                                    <p>Email: ${seller.email}</p>
-                                </div>
+                        <div class="pd-section">
+                            <h3>Description</h3>
+                            <p style="white-space: pre-line; line-height: 1.6; color:#555;">${prop.description}</p>
+                        </div>
+                        
+                        <div class="pd-section">
+                            <h3>Property Details</h3>
+                            <div class="feature-list">
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Type: ${prop.type}</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Purpose: ${prop.mode}</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> City: ${prop.city}</div>
+                                <div class="feature-item"><i class="fas fa-check-circle"></i> Area: ${prop.area}</div>
                             </div>
                         </div>
-                    </aside>
+                    </div>
+
+                    <div>
+                        <div class="pd-sidebar-card">
+                            <div class="pd-price">PKR ${prop.price.toLocaleString()}</div>
+                            
+                            <div class="agent-box">
+                                <div class="agent-img"><i class="fas fa-user-tie"></i></div>
+                                <div class="agent-info">
+                                    <div>${seller.name}</div>
+                                    <span>Zainab Builders Verified</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-form">
+                                <p style="margin-bottom:10px; font-weight:600;">Contact Seller</p>
+                                <div id="contactDetails" style="display:none; margin-bottom:15px; background:#f0f9f4; padding:10px; border-radius:4px;">
+                                    <p><i class="fas fa-phone"></i> ${seller.phone || 'N/A'}</p>
+                                </div>
+                                
+                                <input type="text" placeholder="Name">
+                                <input type="text" placeholder="Phone">
+                                <input type="email" placeholder="Email">
+                                <textarea rows="3" placeholder="I am interested in this property..."></textarea>
+                                <button class="btn-inquire" onclick="revealPhone()">Show Phone Number & Email</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
              `;
         });
 
-        function revealContact() {
-            // Optional: Require login to see contact
-            const user = auth.getUser();
-            if (!user) {
-                alert('Please Login to view seller contact details.');
-                window.location.href = 'auth.html';
-                return;
-            }
-            document.getElementById('contactBox').style.display = 'block';
+        function revealPhone() {
+            // Simple reveal logic
+            const details = document.getElementById('contactDetails');
+            if (details) details.style.display = 'block';
         }
     </script>
 </body>
